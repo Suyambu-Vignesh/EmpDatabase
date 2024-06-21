@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/fragment_employees">
+
+    <fragment
+        android:id="@+id/fragment_employees"
+        android:name="com.app.empdatabase.ui.view.EmployeeListFragment" />
+
+    <fragment
+        android:id="@+id/fragment_new_employee"
+        android:name="com.app.empdatabase.ui.view.NewEmployeeFragment" />
+
+</navigation>

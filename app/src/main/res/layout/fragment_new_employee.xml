@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/view_name_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:hint="Name"
+        android:lines="1"
+        app:layout_constraintBottom_toTopOf="@id/view_organization_edit_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread"
+        tools:text="Name" />
+
+    <EditText
+        android:id="@+id/view_organization_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:hint="Organization"
+        android:lines="1"
+        app:layout_constraintBottom_toTopOf="@id/view_street_name_one_edit_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_name_edit_text"
+        app:layout_constraintVertical_chainStyle="spread"
+        tools:text="Organization" />
+
+    <EditText
+        android:id="@+id/view_street_name_one_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:hint="street name line 1"
+        android:lines="1"
+        app:layout_constraintBottom_toTopOf="@id/view_street_name_two_edit_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_organization_edit_text"
+        app:layout_constraintVertical_chainStyle="spread"
+        tools:text="street name line 1" />
+
+    <EditText
+        android:id="@+id/view_street_name_two_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:hint="Organization"
+        android:lines="1"
+        app:layout_constraintBottom_toTopOf="@id/view_city_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_street_name_one_edit_text"
+        app:layout_constraintVertical_chainStyle="spread"
+        tools:text="street name line 2" />
+
+
+    <EditText
+        android:id="@+id/view_city_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:hint="City"
+        android:lines="1"
+        app:layout_constraintBottom_toTopOf="@id/view_state_text"
+        app:layout_constraintEnd_toStartOf="@id/view_zipcode_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_street_name_two_edit_text"
+        app:layout_constraintVertical_chainStyle="spread"
+        tools:text="City" />
+
+    <EditText
+        android:id="@+id/view_zipcode_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginBottom="8dp"
+        android:hint="ZipCode"
+        android:lines="1"
+        app:layout_constraintBottom_toTopOf="@id/view_country_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/view_city_text"
+        app:layout_constraintTop_toBottomOf="@+id/view_street_name_two_edit_text"
+        app:layout_constraintVertical_chainStyle="spread"
+        tools:text="ZipCode" />
+
+    <EditText
+        android:id="@+id/view_state_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="8dp"
+        android:hint="State"
+        android:lines="1"
+        app:layout_constraintBottom_toTopOf="@id/button_add_employee"
+        app:layout_constraintEnd_toStartOf="@id/view_zipcode_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_city_text"
+        app:layout_constraintVertical_chainStyle="spread"
+        tools:text="State" />
+
+    <EditText
+        android:id="@+id/view_country_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginBottom="8dp"
+        android:hint="Country"
+        android:lines="1"
+        app:layout_constraintBottom_toTopOf="@id/button_add_employee"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/view_state_text"
+        app:layout_constraintTop_toBottomOf="@+id/view_zipcode_text"
+        app:layout_constraintVertical_chainStyle="spread"
+        tools:text="Country" />
+
+    <Button
+        android:id="@+id/button_add_employee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Record"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_country_text" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

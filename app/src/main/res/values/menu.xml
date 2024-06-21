@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menu_title_add_employee">Add Employee</string>
+    <string name="menu_title_settings">Settings</string>
+    <string name="menu_title_all_employee">All Employees</string>
+    <string name="menu_title_filter_employee">Filter Employees</string>
+</resources>
