@@ -1,40 +1,49 @@
 [versions]
+activity = "1.9.0"
 agp = "8.4.2"
-kotlin = "2.0.0"
-ksp = "2.0.0-1.0.21"
+appcompat = "1.7.0"
+constraintlayout = "2.1.4"
 coreKtx = "1.13.1"
+espressoCore = "3.5.1"
+frgamentLifeCycleVersion = "1.8.0"
+googleTruth = "1.4.2"
+iomock = "1.13.11"
 junit = "4.13.2"
 junitVersion = "1.1.5"
-espressoCore = "3.5.1"
-appcompat = "1.7.0"
-material = "1.12.0"
-activity = "1.9.0"
-constraintlayout = "2.1.4"
-roomVersion = "2.6.1"
+klintGradle = "12.1.1"
+kotlin = "2.0.0"
+kotlinCoroutineTest = "1.9.0-RC"
+ksp = "2.0.0-1.0.21"
 lifeCyleVersion = "2.8.2"
-frgamentLifeCycleVersion = "1.8.0"
+material = "1.12.0"
 navigationFragmentKtx = "2.7.7"
 navigationUiKtx = "2.7.7"
+roboelectric = "4.12.2"
+roomVersion = "2.6.1"
 
 [libraries]
-androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
-androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
-androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-androidx-lifecyle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifeCyleVersion" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-frgament = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "frgamentLifeCycleVersion" }
-androidx-room = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }
-androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomVersion" }
-androidx-room-annotation-processor = { group = "androidx.room", name = "room-compiler", version.ref = "roomVersion" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-lifecyle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifeCyleVersion" }
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
+androidx-room = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }
+androidx-room-annotation-processor = { group = "androidx.room", name = "room-compiler", version.ref = "roomVersion" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomVersion" }
+google-truth = { group = "com.google.truth", name="truth", version.ref = "googleTruth"}
+iomockk = { group = "io.mockk", name="mockk", version.ref = "iomock" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinCoroutineTest"}
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+roboelectric = { group = "org.robolectric", name = "robolectric", version.ref = "roboelectric"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+klint-gradle = {id = "org.jlleitschuh.gradle.ktlint", version.ref = "klintGradle"}

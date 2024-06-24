@@ -14,5 +14,5 @@ data class Address(
     @ColumnInfo("col_state")
     val state: String,
     @ColumnInfo("col_country")
-    val country: String
+    val country: String,
 )

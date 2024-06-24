@@ -12,11 +12,11 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class EmployeeViewModel(
-    private val repository: EmployeeRepository = EmployeeRepository()
+    private val repository: EmployeeRepository = EmployeeRepository(),
 ) : ViewModel() {
     private val state: MutableStateFlow<PageState> by lazy {
         MutableStateFlow<PageState>(
-            PageState()
+            PageState(),
         )
     }
 
@@ -24,23 +24,24 @@ class EmployeeViewModel(
         state
     }
 
-    internal fun fetchEmployeeRecords() {
-        viewModelScope.launch {
-            repository.getListOfEmployee().collectLatest {
-                val empRecords = it.getOrNull()
-
-                state.value = PageState(
-                    showProgress = false,
-                    employees = if (empRecords.isNullOrEmpty()) null else empRecords,
-                    errorState = if (empRecords.isNullOrEmpty()) ErrorState.ERROR_EMPTY else null
-                )
-            }
-        }
-    }
-
     internal fun addEmployeeRecord(empRecord: Employee) {
         viewModelScope.launch {
             repository.addEmployeeRecord(empRecord)
+        }
+    }
+
+    internal fun fetchEmployeeFor(prefixName: String) {
+        viewModelScope.launch {
+            repository.getListOfEmployeeWithName(prefixName).collectLatest {
+                val empRecords = it.getOrNull()
+
+                state.value =
+                    PageState(
+                        showProgress = false,
+                        employees = if (empRecords.isNullOrEmpty()) null else empRecords,
+                        errorState = if (empRecords.isNullOrEmpty()) ErrorState.ERROR_EMPTY else null,
+                    )
+            }
         }
     }
 }

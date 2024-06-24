@@ -18,6 +18,7 @@ import com.app.empdatabase.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -33,14 +34,14 @@ class MainActivity : AppCompatActivity() {
         navController = findNavController(R.id.fragment_root)
         binding.appToolBar.setupWithNavController(
             navController,
-            AppBarConfiguration(navController.graph, null)
+            AppBarConfiguration(navController.graph, null),
         )
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(
             R.menu.app_menu,
-            menu
+            menu,
         )
 
         return true

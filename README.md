@@ -22,6 +22,7 @@ The application only uses local store(as focus on client side only)
 ** For Development **
 
 + JetPack
++ KSP
 + Navigation
 + Room
 

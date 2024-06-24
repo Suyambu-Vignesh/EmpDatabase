@@ -1,26 +1,17 @@
 package com.app.empdatabase.core
 
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import com.app.empdatabase.data.offline.EmployeeDataBase
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.mockkStatic
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import com.app.empdatabase.data.local.EmployeeDao
+import com.google.common.truth.Truth.assertThat
 import org.junit.Test
+import org.junit.runner.RunWith
 
+@RunWith(AndroidJUnit4::class)
 class AppModuleTest {
-
     @Test
     fun `test database`() {
-        mockkStatic(Room::class)
-
-        val builder = mockk<RoomDatabase.Builder<EmployeeDataBase>>()
-        val empDatabase = mockk<EmployeeDataBase>()
-
-        val room = mockk<Room>()
-        every { builder.build() } returns empDatabase
-        every { room.databaseBuilder(any(), EmployeeDataBase::class.java, , any()) } returns builder
-
-        AppModule.empDao
+        AppModule.init(InstrumentationRegistry.getInstrumentation().context)
+        assertThat(AppModule.empDao).isInstanceOf(EmployeeDao::class.java)
     }
 }

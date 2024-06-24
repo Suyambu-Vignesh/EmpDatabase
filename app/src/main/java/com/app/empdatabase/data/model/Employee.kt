@@ -14,5 +14,5 @@ data class Employee(
     @ColumnInfo(name = "col_organization")
     val organization: String,
     @Embedded
-    val address: Address
+    val address: Address,
 )

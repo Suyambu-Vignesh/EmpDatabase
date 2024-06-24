@@ -1,4 +1,4 @@
-package com.app.empdatabase.data.offline
+package com.app.empdatabase.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -13,4 +13,7 @@ interface EmployeeDao {
 
     @Insert
     fun addEmployee(employee: Employee)
+
+    @Query("SELECT * FROM table_employee WHERE col_name LIKE :prefixName || '%'")
+    fun getAllEmployeeWithName(prefixName: String): Flow<List<Employee>>
 }

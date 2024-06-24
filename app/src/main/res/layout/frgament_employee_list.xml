@@ -4,6 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <EditText
+        android:id="@+id/view_search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ProgressBar
         android:id="@+id/view_progress"
         android:layout_width="wrap_content"
@@ -16,21 +24,21 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/view_employee_list"
         android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/view_search_bar" />
 
     <include
         android:id="@+id/view_error"
         layout="@layout/view_error"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/view_search_bar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

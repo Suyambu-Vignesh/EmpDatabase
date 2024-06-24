@@ -1,4 +1,4 @@
-package com.app.empdatabase.data.offline
+package com.app.empdatabase.data.local
 
 import android.util.Log
 import com.app.empdatabase.core.AppModule
@@ -11,10 +11,12 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import java.lang.Exception
+import java.lang.RuntimeException
 
+// todo create a version of [Result] to avoid throwing exe to ViewModel
 class EmployeeDataSource(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
-    private val employeeDao: EmployeeDao = AppModule.empDao
+    private val employeeDao: EmployeeDao = AppModule.empDao,
 ) {
     suspend fun getListOfEmployees(): Flow<Result<List<Employee>>> {
         return employeeDao.getAllEmployee().map { it -> Result.success(it) }
@@ -29,5 +31,16 @@ class EmployeeDataSource(
                 Log.d(toString(), exe.toString())
             }
         }
+    }
+
+    suspend fun getListOfEmployeeWithName(prefixName: String): Flow<Result<List<Employee>>> {
+        return employeeDao.getAllEmployeeWithName(prefixName).map {
+            if (it.isNullOrEmpty()) {
+                // todo create proper Error handling for empty
+                Result.failure(RuntimeException("Empty Results"))
+            } else {
+                Result.success(it)
+            }
+        }.catch { it -> Result.failure<List<Employee>>(it) }.flowOn(ioDispatcher)
     }
 }

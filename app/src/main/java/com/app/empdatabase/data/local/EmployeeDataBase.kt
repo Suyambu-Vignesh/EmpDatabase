@@ -1,4 +1,4 @@
-package com.app.empdatabase.data.offline
+package com.app.empdatabase.data.local
 
 import android.content.Context
 import androidx.room.Database
@@ -12,11 +12,12 @@ abstract class EmployeeDataBase : RoomDatabase() {
 }
 
 internal fun getDataBase(context: Context): EmployeeDao {
-    val database = Room.databaseBuilder(
-        context,
-        EmployeeDataBase::class.java,
-        "emp.db"
-    ).build()
+    val database =
+        Room.databaseBuilder(
+            context,
+            EmployeeDataBase::class.java,
+            "emp.db",
+        ).build()
 
     return database.getEmployeeDao()
 }

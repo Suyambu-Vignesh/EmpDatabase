@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/text_name"
-        style="?textAppearanceBody1"
+        style="?textAppearanceHeadline5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:lines="1"
@@ -19,7 +19,7 @@
 
     <TextView
         android:id="@+id/text_company"
-        style="?textAppearanceCaption"
+        style="?textAppearanceBody1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
@@ -33,7 +33,7 @@
 
     <TextView
         android:id="@+id/text_address"
-        style="?textAppearanceCaption"
+        style="?textAppearanceBody1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"

@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.ksp)
+    alias(libs.plugins.klint.gradle)
 }
 
 android {
@@ -23,7 +24,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -37,6 +38,13 @@ android {
 
     viewBinding {
         enable = true
+    }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+            animationsDisabled = true
+        }
     }
 }
 
@@ -55,9 +63,13 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     implementation(libs.material)
 
-    testImplementation("io.mockk:mockk:1.13.11")
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("org.robolectric:robolectric:4.12.2")
+    testImplementation(libs.google.truth)
+    testImplementation(libs.iomockk)
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.roboelectric)
+    testImplementation(libs.androidx.junit)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

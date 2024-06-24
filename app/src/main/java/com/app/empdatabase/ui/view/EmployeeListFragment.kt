@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.app.empdatabase.databinding.FrgamentEmployeeListBinding
 import com.app.empdatabase.ui.EmployeeViewModel
 import com.app.empdatabase.ui.adapter.EmployeeAdapter
@@ -42,17 +42,17 @@ class EmployeeListFragment : Fragment() {
                                 "We are on top on it, Please try after sometime"
                             binding.viewError.textTitle.text = "Something Went Wrong !!!"
                         }
-
                     } ?: run {
                         binding.viewError.root.visibility = View.GONE
                     }
 
-                    binding.viewEmployeeList.visibility = if (it.employees.isNullOrEmpty()) {
-                        View.GONE
-                    } else {
-                        adapter.submitList(it.employees)
-                        View.VISIBLE
-                    }
+                    binding.viewEmployeeList.visibility =
+                        if (it.employees.isNullOrEmpty()) {
+                            View.GONE
+                        } else {
+                            adapter.submitList(it.employees)
+                            View.VISIBLE
+                        }
                 }
             }
         }
@@ -61,16 +61,25 @@ class EmployeeListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = FrgamentEmployeeListBinding.inflate(inflater)
+
+        binding.viewSearchBar.doAfterTextChanged {
+            it?.toString()?.let { name ->
+                viewModel.fetchEmployeeFor(name)
+            }
+        }
 
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewEmployeeList.adapter = adapter
-        viewModel.fetchEmployeeRecords()
+        viewModel.fetchEmployeeFor("")
     }
 }
