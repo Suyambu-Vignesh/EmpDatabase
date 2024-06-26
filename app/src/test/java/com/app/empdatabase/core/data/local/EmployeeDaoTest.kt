@@ -3,15 +3,17 @@ package com.app.empdatabase.core.data.local
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.app.empdatabase.core.utils.test
 import com.app.empdatabase.data.local.EmployeeDao
 import com.app.empdatabase.data.local.EmployeeDataBase
 import com.app.empdatabase.data.model.Address
 import com.app.empdatabase.data.model.Employee
-import com.google.common.truth.Truth.assertThat
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.withContext
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -21,6 +23,7 @@ import org.junit.runner.RunWith
 class EmployeeDaoTest {
     private lateinit var database: EmployeeDataBase
     private lateinit var employeeDao: EmployeeDao
+    private val dispatcher = StandardTestDispatcher()
 
     @Before
     fun onStart() {
@@ -35,19 +38,12 @@ class EmployeeDaoTest {
 
     @Test
     fun `test getAllEmployees`(): Unit =
-        runTest {
-            var listOfEmployees: List<Employee> = ArrayList<Employee>()
+        runTest(context = dispatcher) {
+            withContext(Dispatchers.IO) {
+                val scope = TestScope(dispatcher)
+                val flowCollector =
+                    employeeDao.getAllEmployee().test(scope)
 
-            val values = mutableListOf<Employee>()
-            backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) {
-                employeeDao.getAllEmployee().collect {
-                    listOfEmployees = it
-                }
-            }
-
-            assertThat(listOfEmployees.size).isEqualTo(0)
-
-            backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) {
                 employeeDao.addEmployee(
                     Employee(
                         name = "name1",
@@ -64,9 +60,8 @@ class EmployeeDaoTest {
                     ),
                 )
 
-                advanceUntilIdle()
-
-                assertThat(listOfEmployees.size).isEqualTo(1)
+                dispatcher.scheduler.advanceUntilIdle()
+                flowCollector.assertSize(1)
 
                 employeeDao.addEmployee(
                     Employee(
@@ -83,8 +78,8 @@ class EmployeeDaoTest {
                             ),
                     ),
                 )
-
-                assertThat(listOfEmployees.size).isEqualTo(2)
+                dispatcher.scheduler.advanceUntilIdle()
+                flowCollector.assertSize(2)
             }
         }
 
